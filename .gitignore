@@ -1,2 +1,7 @@
 debug.log
 .agents/
+
+# Security / Credentials
+*.json
+!package.json
+!tsconfig.json
