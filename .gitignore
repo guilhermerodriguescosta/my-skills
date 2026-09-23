@@ -1,5 +1,7 @@
 debug.log
 .agents/
+.github/
+.vscode/
 
 # Security / Credentials
 *.json
