@@ -1,6 +1,6 @@
 ---
 name: english-learning
-description: Use when the user wants to practice English in the current session. Keep the whole conversation in English and, when the user writes incorrect English, show the corrected version using the selected two-line format. Support --details for a brief correction explanation.
+description: Use when the user wants to practice English in the current session. Keep the whole conversation in English and, when the user writes incorrect English, show the corrected version using the selected two-line format. Support --details for brief correction tips.
 ---
 
 # English Learning Skill
@@ -21,18 +21,20 @@ Core behavior:
 
 Always place a `---` separator line before and after the correction block. Always include one blank line between the incorrect and corrected sentences.
 
-4. If the user invokes the skill with `--details`, include a brief explanation of what was corrected after the corrected sentence:
+4. If the user invokes the skill with `--details`, include brief correction tips after the corrected sentence:
 
 ---
 ❌ [the user's original sentence]
 
 ✅ [the corrected English sentence]
 
-💡 Details: [brief explanation of the grammar, word choice, spelling, or punctuation changes]
+💡 Tips:
+- [brief explanation of the grammar, word choice, spelling, or punctuation changes]
+- [another tip, when useful]
 
 ---
 
-Do not include the `Details:` line unless the user specifies `--details`.
+Do not include the `Tips:` section unless the user specifies `--details`.
 
 5. The corrected version must be written in proper English and should be easy to compare with the original sentence.
 6. Prefer clear, short explanations while maintaining a teaching tone.
