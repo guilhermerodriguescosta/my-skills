@@ -1,5 +1,5 @@
 ---
-name: git-commit-origin
+name: git-commit-push
 description: Quando acionada explicitamente para criar um commit e enviar ao origin, revisa as alterações da tarefa, executa os testes existentes relevantes e solicita uma única confirmação antes de preparar, criar ou enviar commits. Também permite revisar e enviar commits locais pendentes.
 ---
 
