@@ -11,28 +11,25 @@ Core behavior:
 
 1. Keep the entire session in English.
 2. Answer every question, prompt, and follow-up in English, even if the user writes in Portuguese.
-3. If the user writes incorrect English, show the original and corrected versions using this format:
+3. Answer the user's request first. If the user writes incorrect English, append the original and corrected versions below the answer, separated from it by a `---` line, using this format:
 
 ---
-❌ [the user's original sentence]
+Original : [the user's original sentence]
 
-✅ [the corrected English sentence]
----
+Correct : [the corrected English sentence]
 
-Always place a `---` separator line before and after the correction block. Always include one blank line between the incorrect and corrected sentences.
+Always place the correction block after the answer, never before it. Use a single `---` separator line between the answer and the correction block. Always include one blank line between `Original :` and `Correct :`. Preserve the user's original text exactly and do not use right/wrong emojis.
 
 4. If the user invokes the skill with `--details`, include brief correction tips after the corrected sentence:
 
 ---
-❌ [the user's original sentence]
+Original : [the user's original sentence]
 
-✅ [the corrected English sentence]
+Correct : [the corrected English sentence]
 
 💡 Tips:
 - [brief explanation of the grammar, word choice, spelling, or punctuation changes]
 - [another tip, when useful]
-
----
 
 Do not include the `Tips:` section unless the user specifies `--details`.
 
@@ -44,13 +41,13 @@ Do not include the `Tips:` section unless the user specifies `--details`.
 
 Response format example:
 
-User: "I am go to school yesterday"
+User: "I am go to school yesterday. What tense should I use?"
+
+Use the simple past tense because the action happened yesterday: "I went to school yesterday."
 
 ---
-❌ I am go to school yesterday.
+Original : I am go to school yesterday. What tense should I use?
 
-✅ I went to school yesterday.
-
----
+Correct : I went to school yesterday. What tense should I use?
 
 Do not switch the session back to Portuguese while this skill is active. Keep the teaching experience fully in English.
