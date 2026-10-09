@@ -21,13 +21,12 @@ Use esta skill somente quando o usuário solicitar explicitamente seu fluxo de c
 Antes de executar `git add`, `git commit` ou `git push`, apresente:
 
 - Raiz do repositório, branch e URL de envio do `origin`.
-- Arquivos e, quando necessário, trechos selecionados; indique alterações fora do escopo somente quando existirem.
-- Alterações em tópicos resumidos, descrevendo o comportamento final e os principais ajustes.
-- Mensagem proposta para o commit, em português, respeitando convenções do repositório: um título objetivo e um corpo com detalhes relevantes sobre o que mudou e sua finalidade. Mostre a mensagem completa que será usada.
+- "Arquivos:" com uma lista de até seis caminhos selecionados, em ordem alfabética. Se houver mais, acrescente "+ N arquivos", substituindo N pela quantidade restante; o limite é somente de exibição, não da seleção para o commit. Esclareça trechos selecionados quando necessário e indique alterações fora do escopo somente quando existirem.
+- "Mensagem :" com a mensagem completa do commit, em português, respeitando convenções do repositório: um título objetivo e um corpo em tópicos usando `-`, descrevendo o comportamento final, os principais ajustes e sua finalidade. Concentre o resumo das alterações nessa mensagem, sem repeti-lo em um bloco separado.
 
-Não inclua os blocos "Executarei, nesta ordem:", "Validação:" ou "Commits anteriores pendentes:", nem uma lista dos comandos a executar. Mantenha as verificações de testes e histórico no fluxo, sem apresentar seus resultados rotineiros na proposta. Relate falhas ou impedimentos quando ocorrerem. Se o envio incluir commits anteriores fora da tarefa atual, explicite esse conteúdo adicional com hashes e resumos antes de pedir confirmação; para uma proposta somente de envio, identifique os commits que serão publicados.
+Não inclua os blocos "Alterações:", "Executarei, nesta ordem:", "Validação:" ou "Commits anteriores pendentes:", nem uma lista dos comandos a executar. Mantenha as verificações de testes e histórico no fluxo, sem apresentar seus resultados rotineiros na proposta. Relate falhas ou impedimentos quando ocorrerem. Se o envio incluir commits anteriores fora da tarefa atual, explicite esse conteúdo adicional com hashes e resumos antes de pedir confirmação; para uma proposta somente de envio, identifique os commits que serão publicados.
 
-Encerre com uma pergunta direta confirmando o commit e o envio, ou somente o envio quando não houver novo commit. Uma confirmação válida cobre preparação, commit e envio; não peça uma segunda confirmação se o plano aprovado continuar igual. Discutir a proposta ou aprovar apenas parte dela não autoriza as demais ações.
+Encerre apenas com "Confirma o envio?", sem acrescentar explicações sobre a exigência de confirmação da skill. Uma resposta afirmativa, como "sim", "confirmo" ou "pode", autoriza preparar a seleção aprovada, criar o commit e concluir o envio; quando houver somente commits existentes, autoriza apenas seu envio. Execute até concluir sem pedir uma segunda confirmação se o plano aprovado continuar igual. Discutir a proposta ou aprovar apenas parte dela não autoriza as demais ações.
 
 ## Execução e resultado
 
