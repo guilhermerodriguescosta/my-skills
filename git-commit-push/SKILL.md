@@ -1,11 +1,16 @@
 ---
 name: git-commit-push
-description: Quando acionada explicitamente para criar um commit e enviar ao origin, revisa as alterações da tarefa, executa os testes existentes relevantes e solicita uma única confirmação antes de preparar, criar ou enviar commits. Também permite revisar e enviar commits locais pendentes.
+description: Quando acionada explicitamente para criar um commit e enviar ao origin, revisa as alterações da tarefa, executa os testes automatizados existentes relevantes somente com o parâmetro --test e solicita uma única confirmação antes de preparar, criar ou enviar commits. Também permite revisar e enviar commits locais pendentes.
 ---
 
 # Commit e envio ao origin
 
 Use esta skill somente quando o usuário solicitar explicitamente seu fluxo de commit e envio. Menções para discutir ou editar a própria skill não iniciam esse fluxo. Responda em português.
+
+## Parâmetro opcional
+
+- `--test`: executa os testes automatizados existentes relevantes antes da confirmação. Exemplo: `$git-commit-push --test`.
+- Sem `--test`, não descubra nem execute testes automatizados por iniciativa da skill; siga com a revisão, a confirmação única, o commit e o push. Preserve os hooks do repositório, sem usar `--no-verify` para desativá-los.
 
 ## Revisão e testes
 
@@ -13,7 +18,7 @@ Use esta skill somente quando o usuário solicitar explicitamente seu fluxo de c
 2. Na raiz do repositório, examine alterações preparadas, não preparadas e arquivos novos, incluindo o conteúdo relevante. Selecione somente alterações relacionadas à tarefa. Não use `git add .` nem altere arquivos para facilitar o commit. Se o contexto não permitir selecionar com segurança, pergunte.
 3. Se houver alterações já preparadas fora da seleção, informe e peça uma decisão antes de continuar. Não as inclua, descarte ou retire da área de preparação automaticamente. Para arquivos com alterações misturadas, proponha somente os trechos da tarefa; se não for possível separá-los com segurança, pare e esclareça o escopo.
 4. Consulte a branch de destino no `origin` com uma operação de leitura, como `git ls-remote`, e identifique todos os commits locais que o envio incluirá. Não trate referências locais possivelmente desatualizadas como confirmação do estado remoto. Se o histórico remoto necessário não estiver disponível localmente, houver divergência ou a consulta falhar, informe a limitação e pare para obter instruções; não faça fetch, pull, merge ou rebase automaticamente. Se a branch remota não existir, explicite sua criação e o histórico que será publicado.
-5. Descubra os testes existentes relevantes nas instruções e configurações do repositório, considerando também os commits pendentes. Execute-os antes de solicitar confirmação e registre comando e resultado. Se não houver testes relevantes, continue. Se falharem ou não puderem ser executados, pare e relate; não corrija código, instale dependências ou ignore a falha automaticamente. Se os testes alterarem arquivos, reavalie a seleção antes de continuar.
+5. Somente se o usuário informar o parâmetro `--test` na solicitação do fluxo, descubra os testes automatizados existentes relevantes nas instruções e configurações do repositório, considerando também os commits pendentes. Execute-os antes de solicitar confirmação e registre comando e resultado. Se não houver testes relevantes, continue. Se falharem ou não puderem ser executados, pare e relate; não corrija código, instale dependências ou ignore a falha automaticamente. Se os testes alterarem arquivos, reavalie a seleção antes de continuar.
 6. Se não houver alterações nem commits pendentes, informe e encerre. Se houver apenas commits pendentes, siga com uma proposta de envio, sem criar commit vazio.
 
 ## Confirmação única
@@ -24,7 +29,7 @@ Antes de executar `git add`, `git commit` ou `git push`, apresente:
 - "Arquivos:" com uma lista de até seis caminhos selecionados, em ordem alfabética. Se houver mais, acrescente "+ N arquivos", substituindo N pela quantidade restante; o limite é somente de exibição, não da seleção para o commit. Esclareça trechos selecionados quando necessário e indique alterações fora do escopo somente quando existirem.
 - "Mensagem :" com a mensagem completa do commit, em português, respeitando convenções do repositório: um título objetivo e um corpo em tópicos usando `-`, descrevendo o comportamento final, os principais ajustes e sua finalidade. Concentre o resumo das alterações nessa mensagem, sem repeti-lo em um bloco separado.
 
-Não inclua os blocos "Alterações:", "Executarei, nesta ordem:", "Validação:" ou "Commits anteriores pendentes:", nem uma lista dos comandos a executar. Mantenha as verificações de testes e histórico no fluxo, sem apresentar seus resultados rotineiros na proposta. Relate falhas ou impedimentos quando ocorrerem. Se o envio incluir commits anteriores fora da tarefa atual, explicite esse conteúdo adicional com hashes e resumos antes de pedir confirmação; para uma proposta somente de envio, identifique os commits que serão publicados.
+Não inclua os blocos "Alterações:", "Executarei, nesta ordem:", "Validação:" ou "Commits anteriores pendentes:", nem uma lista dos comandos a executar. Mantenha a verificação de histórico e, quando `--test` for informado, as verificações de testes no fluxo, sem apresentar seus resultados rotineiros na proposta. Relate falhas ou impedimentos quando ocorrerem. Se o envio incluir commits anteriores fora da tarefa atual, explicite esse conteúdo adicional com hashes e resumos antes de pedir confirmação; para uma proposta somente de envio, identifique os commits que serão publicados.
 
 Encerre apenas com "Confirma o envio?", sem acrescentar explicações sobre a exigência de confirmação da skill. Uma resposta afirmativa, como "sim", "confirmo" ou "pode", autoriza preparar a seleção aprovada, criar o commit e concluir o envio; quando houver somente commits existentes, autoriza apenas seu envio. Execute até concluir sem pedir uma segunda confirmação se o plano aprovado continuar igual. Discutir a proposta ou aprovar apenas parte dela não autoriza as demais ações.
 
