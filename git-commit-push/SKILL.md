@@ -1,11 +1,14 @@
 ---
 name: git-commit-push
-description: Quando acionada explicitamente para criar um commit e enviar ao origin, revisa as alterações da tarefa, executa os testes automatizados existentes relevantes somente com o parâmetro --test e solicita uma única confirmação antes de preparar, criar ou enviar commits. Também permite revisar e enviar commits locais pendentes.
+description: >-
+  Use esta skill EXCLUSIVAMENTE quando o usuário marcar ou mencionar explicitamente @git-commit-push (ou $git-commit-push).
+  NÃO ative esta skill para pedidos genéricos de git, commit ou push que não incluam a menção explícita.
+  Revisa alterações da tarefa, executa testes relevantes somente com o parâmetro --test e solicita confirmação única antes de preparar, criar ou enviar commits.
 ---
 
 # Commit e envio ao origin
 
-Use esta skill somente quando o usuário solicitar explicitamente seu fluxo de commit e envio. Menções para discutir ou editar a própria skill não iniciam esse fluxo. Responda em português.
+Use esta skill única e exclusivamente quando o usuário marcar ou referenciar explicitamente `@git-commit-push` (ou `$git-commit-push`). Pedidos gerais de commit/push em texto sem a menção explícita à skill NÃO devem acionar este fluxo. Menções apenas para discutir ou editar a própria skill não iniciam esse fluxo. Responda em português.
 
 ## Parâmetro opcional
 
